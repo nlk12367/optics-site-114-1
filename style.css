@@ -1,0 +1,100 @@
+/* 基礎樣式 (白底黑字) */
+body {
+  background: #f4f7f6; /* 淺灰色背景 */
+  color: #333; /* 深色文字 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* 內容置中 */
+.ctr {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* 網站佈局 */
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+header { background-color: #004a99; color: white; padding: 20px; text-align: center; }
+header h1 { margin: 0; }
+nav { background-color: #333; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap;}
+nav li a { display: block; color: white; padding: 14px 20px; text-decoration: none; }
+nav li a:hover { background-color: #555; }
+/* 目前選中章節的樣式 */
+nav li a.active {
+  background-color: #007BFF;
+  font-weight: bold;
+}
+
+
+/* 模組樣式 (淺色主題) */
+.chapter-title { color: #004a99; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-top: 10px; }
+.learning-module { 
+  background-color: white; /* 白色卡片背景 */
+  border: 1px solid #ddd; /* 淺色邊框 */
+  border-radius: 8px; 
+  padding: 25px; 
+  margin-top: 20px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+  /* 動畫 */
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.learning-module h2 { color: #333; margin-top: 0; }
+.learning-module p { color: #555; }
+
+/* 影片 */
+.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; margin-top: 20px; border-radius: 8px; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* 測驗 (淺色主題) */
+.quiz-form .quiz-question p { font-weight: bold; color: #333; }
+.quiz-form label { display: block; margin: 5px 0 5px 25px; cursor: pointer; color: #555; }
+.quiz-form input[type="radio"] { accent-color: #007BFF; }
+.quiz-form button { background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+.quiz-form button:hover { background-color: #0056b3; }
+
+/* 字卡遊戲 (淺色主題) */
+.flashcard-container { display: flex; flex-direction: column; align-items: center; }
+.flashcard { background-color: transparent; width: 300px; height: 200px; perspective: 1000px; cursor: pointer; }
+.flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+.flashcard.is-flipped .flashcard-inner { transform: rotateY(180deg); } 
+.card-face { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; justify-content: center; align-items: center; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; box-sizing: border-box; }
+
+.card-front { 
+  background-color: #F5F5F5; /* 淺灰色正面 */
+  color: #333; /* 深色文字 */
+  font-size: 24px; 
+}
+.card-back { 
+  background-color: #D1E7FD; /* 柔和的淺藍色背面 */
+  color: #052C65; /* 深藍色文字 */
+  transform: rotateY(180deg); 
+}
+
+.flashcard-nav { margin-top: 20px; }
+.flashcard-nav button { padding: 8px 16px; margin: 0 10px; cursor: pointer; background-color: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 4px; }
+.flashcard-nav button:hover { background-color: #e9e9e9; }
+
+/* 頁尾 */
+footer { text-align: center; padding: 20px; margin-top: 30px; color: #777; border-top: 1px solid #ddd; }
+/* *** ↓↓ 請將這段程式碼加入到您的 CSS 欄位中 ↓↓ *** */
+
+.learning-module img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px auto; /* "auto" 會使其水平置中 */
+  display: block; /* "block" 是讓 margin: auto 生效的關鍵 */
+}
+
