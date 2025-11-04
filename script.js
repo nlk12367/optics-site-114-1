@@ -500,78 +500,59 @@ const chapterData = {
             initFlashcards('5', flashcards);
         }
     },
-    
-    // --- (*** 新增 ***) 附錄的 HTML 內容與邏輯 ---
-    "appendix": {
-        html: `
-            <h1 class="chapter-title">附錄：二色向性 (Dichroism)</h1>
-            <section class="learning-module">
-                <h2>🎓 <strong>二色向性 (Dichroism) 的基本原理</strong></h2>
-                <p><strong>二向色性是指某些晶體或物質對於不同偏振方向的光，會表現出選擇性吸收的物理現象。</strong></p>
-                <p>簡單來說，當一束非偏振光（含有各種隨機方向的振動電場）通過具有二色性的材料時，會發生以下情況：</p>
-                <ol>
-                    <li><p><strong>選擇性吸收 (Selective Absorption)</strong>：該材料會強烈吸收某個特定偏振方向的光（我們稱之為<u>吸收軸</u>），而對於與其垂直的偏振方向的光，則幾乎不吸收，讓其順利通過（我們稱之為<u>穿透軸</u>或 <u>偏振軸</u>）。</p></li>
-                    <li><p><strong>產生偏振光 (Polarization)</strong>：因此，原本非偏振的光在穿過這種材料後，只剩下與「穿透軸」方向一致的偏振光，其餘方向的偏振光都被吸收掉了。最終，出射的光就變成了線偏振光。</p></li>
-                </ol>
-                <p style="text-align: center;"><img src="https://hackmd.io/_uploads/SyY7cXjRgg.png" alt="Dichroism diagram 1"></p>
-                <p><em>電氣石都是化學成分各不相同的矽酸硼化物</em></p>
-                
-                <p><strong>形象化比喻：</strong></p>
-                <p>您可以將具有二色性的材料想像成一個「柵欄」。</p>
-                <ul>
-                    <li><strong>非偏振光</strong>：就像一群人從四面八方隨意跑向柵欄。</li>
-                    <li><strong>二色性材料（柵欄）</strong>：只有身體側向與柵欄縫隙平行的人（特定偏振方向的光）才能通過。</li>
-                    <li><strong>被吸收的光</strong>：身體方向與柵欄垂直的人（其他偏振方向的光）會被擋住。</li>
-                    <li><strong>穿透的偏振光</strong>：最終通過柵欄的人群，都只能以同一個方向前進。</li>
-                </ul>
-                <p>這個現象的物理本質，與材料的分子或晶格結構有關。在這些材料中，其分子排列具有明顯的方向性，使得電子只能在特定方向上有效地與光的電場相互作用並吸收其能量。</p>
-                <p style="text-align: center;"><img src="https://hackmd.io/_uploads/rytttQo0ll.png" alt="Dichroism diagram 2"></p>
-                <p><strong>Y方向：</strong>電場y分量沿導線長軸驅動傳導電子産生電流。電子和晶格原子碰撞，傳遞能量導線變熱。沿著y軸加速的電子向前向後都輻射電磁波，向前輻射的電磁波與入射波相抵消，從而y分量透過很少或者根本不透過。<br>
-                <strong>Z方向：</strong>電子不能移動很遠，z分量不受影響。</p>
-            </section>
+    // 在您的 script.js 中，找到這一段並完整替換：
+    "appendix-dichroism": {
+    html: `
+        <h1 class="chapter-title">附錄 8.3:二色向性 (Dichroism)</h1>
+        <section class="learning-module">
+            <h2>🎓 <strong>二色向性 (Dichroism) 的基本原理</strong></h2>
+            <p><strong>二向色性是指某些晶體或物質對於不同偏振方向的光,會表現出選擇性吸收的物理現象。</strong></p>
+            <p>簡單來說,當一束非偏振光(含有各種隨機方向的振動電場)通過具有二色性的材料時,會發生以下情況:</p>
+            <ol>
+                <li><p><strong>選擇性吸收 (Selective Absorption)</strong>:該材料會強烈吸收某個特定偏振方向的光(我們稱之為<u>吸收軸</u>),而對於與其垂直的偏振方向的光,則幾乎不吸收,讓其順利通過(我們稱之為<u>穿透軸</u>或 <u>偏振軸</u>)。</p></li>
+                <li><p><strong>產生偏振光 (Polarization)</strong>:因此,原本非偏振的光在穿過這種材料後,只剩下與「穿透軸」方向一致的偏振光,其餘方向的偏振光都被吸收掉了。最終,出射的光就變成了線偏振光。</p></li>
+            </ol>
+            <p style="text-align: center;"><img src="https://hackmd.io/_uploads/SyY7cXjRgg.png" alt="Dichroism diagram 1"></p>
             
-            <section class="learning-module">
-                <h2><strong>二色向性在偏振片 (Polarizer) 的應用</strong></h2>
-                <p>二色性是製造現代最常見的<strong>吸收型偏振片（Absorptive Polarizer）</strong>的核心原理。這種類型的偏振片，也常被稱為「寶麗來（Polaroid）偏振片」，其發明大大降低了偏振光的生產成本，使其得以廣泛應用。</p>
-                <p><strong>其結構與運作方式如下：</strong></p>
-                <ol>
-                    <li><p><strong>材料選擇</strong>：最經典的材料是聚乙烯醇（Polyvinyl Alcohol, PVA）薄膜。</p></li>
-                    <li><p><strong>拉伸定向</strong>：首先，將PVA薄膜加熱並沿一個方向強力拉伸。這個過程會使得原本隨機排列的長鏈聚合物分子，沿著拉伸方向整齊排列。</p></li>
-                    <li><p><strong>染色（摻雜）</strong>：接著，將拉伸後的薄膜浸泡在富含碘（Iodine）的溶液中。碘分子會附著在整齊排列的PVA長鏈上，形成導電的碘鏈。</p></li>
-                    <li><p><strong>形成「吸收軸」</strong>：這些沿著PVA分子鏈排列的碘鏈，就像一根根微小的導線。當入射光的電場方向與這些碘鏈平行時，會驅動碘鏈中的電子產生電流，光的能量因此被吸收並轉化為熱能。這個方向就成了偏振片的<strong>吸收軸</strong>。</p></li>
-                    <li><p><strong>形成「穿透軸」</strong>：當入射光的電場方向與碘鏈垂直時，電子無法在短軸方向上有效移動，因此光的能量不會被吸收，光線便能順利穿透。這個方向就是偏振片的<strong>穿透軸</strong>。</p></li>
-                </ol>
-                <p><strong>結論：</strong></p>
-                <p>一片avidin的偏振片，就是利用其內部分子結構的有序排列，創造出一個特定的「吸收軸」。當自然光通過時，與吸收軸平行的電場分量被吸收，而與其垂直的電場分量則被允許通過，從而將非偏振的自然光轉變為線偏振光。</p>
-            </section>
-            
-            <section class="learning-module">
-                <h2>相關影片</h2>
-                <div class="video-container">
-                    <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src="https://www.youtube.com/embed/cNJPzpMJfxI" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </div>
-                <div class="video-container" style="margin-top: 15px;">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=540074514&bvid=BV1vi4y1b7a3&cid=172339009&p=1" frameborder="no" allowfullscreen="true"></iframe>
-                </div>
-            </section>
-
-            <section class="learning-module">
-                <h2><strong>二色性偏振片的應用實例</strong></h2>
-                <ul>
-                    <li><strong>LCD 顯示器</strong>：液晶顯示器的每個像素前後都各有一片偏振片，通過控制液晶分子的旋轉來決定光的通過或阻擋，從而顯示圖像。</li>
-                    <li><strong>太陽眼鏡</strong>：偏光太陽眼鏡可以過濾掉來自水面、路面等水平面的反射眩光（這些眩光主要是水平偏振光），讓視野更清晰舒適。</li>
-                    <li><strong>攝影濾鏡</strong>：攝影師使用偏光鏡（CPL鏡）來消除反光、增加色彩飽和度，例如讓天空更藍、植物更翠綠。</li>
-                    <li><strong>科學實驗</strong>：在光學實驗室中，用於產生和分析偏振光，研究材料的光学特性。</li>
-                </ul>
-                <p>總而言之，二色性是將特定方向光線「吸收掉」的原理，而偏振片則是利用此原理製造出來、用以產生線偏振光的關鍵光學元件。</p>
-            </section>
-        `,
-        // --- 附錄沒有測驗或字卡，所以 initLogic 是空的 ---
-        initLogic: () => {
-            // 附錄頁面不需要 quiz 或 flashcard 邏輯
-        }
-    },
-    "appendix-birefringence": {
+            <p><strong>形象化比喻:</strong></p>
+            <p>您可以將具有二色性的材料想像成一個「柵欄」。</p>
+            <ul>
+                <li><strong>非偏振光</strong>:就像一群人從四面八方隨意跑向柵欄。</li>
+                <li><strong>二色性材料(柵欄)</strong>:只有身體側向與柵欄縫隙平行的人(特定偏振方向的光)才能通過。</li>
+                <li><strong>被吸收的光</strong>:身體方向與柵欄垂直的人(其他偏振方向的光)會被擋住。</li>
+                <li><strong>穿透的偏振光</strong>:最終通過柵欄的人群,都只能以同一個方向前進。</li>
+            </ul>
+            <p style="text-align: center;"><img src="https://hackmd.io/_uploads/rytttQo0ll.png" alt="Dichroism diagram 2"></p>
+        </section>
+        
+        <section class="learning-module">
+            <h2><strong>二色向性在偏振片 (Polarizer) 的應用</strong></h2>
+            <p>二色性是製造現代最常見的<strong>吸收型偏振片(Absorptive Polarizer)</strong>的核心原理。</p>
+            <p><strong>其結構與運作方式如下:</strong></p>
+            <ol>
+                <li><p><strong>材料選擇</strong>:最經典的材料是聚乙烯醇(Polyvinyl Alcohol, PVA)薄膜。</p></li>
+                <li><p><strong>拉伸定向</strong>:首先,將PVA薄膜加熱並沿一個方向強力拉伸。</p></li>
+                <li><p><strong>染色(摻雜)</strong>:接著,將拉伸後的薄膜浸泡在富含碘(Iodine)的溶液中。</p></li>
+                <li><p><strong>形成「吸收軸」</strong>:這些碘鏈會吸收平行方向的電場能量。</p></li>
+                <li><p><strong>形成「穿透軸」</strong>:垂直方向的電場則可順利穿透。</p></li>
+            </ol>
+        </section>
+        
+        <section class="learning-module">
+            <h2><strong>二色性偏振片的應用實例</strong></h2>
+            <ul>
+                <li><strong>LCD 顯示器</strong>:液晶顯示器的每個像素前後都各有一片偏振片。</li>
+                <li><strong>太陽眼鏡</strong>:偏光太陽眼鏡可以過濾掉來自水面、路面等水平面的反射眩光。</li>
+                <li><strong>攝影濾鏡</strong>:攝影師使用偏光鏡(CPL鏡)來消除反光、增加色彩飽和度。</li>
+                <li><strong>科學實驗</strong>:在光學實驗室中,用於產生和分析偏振光。</li>
+            </ul>
+        </section>
+    `,
+    initLogic: () => {
+        console.log("附錄 8.3 已載入");
+    }
+},
+"appendix-birefringence": {
         html: `
             <h1 class="chapter-title">附錄：8.4 雙折射 (Birefringence)</h1>
             <section class="learning-module">
@@ -751,6 +732,7 @@ const chapterData = {
         `,
         initLogic: () => { }
     },
+
     "problems": {
         html: `
             <h1 class="chapter-title">附錄：課本習題 (Ch 3, 4, 7, 8)</h1>
@@ -1111,15 +1093,16 @@ function checkMathJaxReady() {
 // 應用程式的進入點
 function initializeAppLogic() {
     const contentArea = document.getElementById('content-area');
-    const navLinks = document.querySelectorAll('#main-nav a');
+    const navLinks = document.querySelectorAll('#main-nav a[data-chapter]');
 
     // 導覽列點擊事件
     function setupNavigation() {
+        
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault(); // 防止頁面跳轉
                 const chapterId = link.dataset.chapter;
-                
+                if (!chapterId) return;
                 // 檢查章節是否存在
                 if (chapterData[chapterId]) {
                     renderChapter(chapterId);
