@@ -3642,13 +3642,18 @@ function initializeAppLogic() {
 
     // 渲染章節內容的函式 (保持不變)
     function renderChapter(chapterId) {
-// ... existing code ...
+        const data = chapterData[chapterId];
+        if (!data) return;
+        if (window.MathJax?.typesetClear) {
+            window.MathJax.typesetClear([contentArea]);
+        }
+        contentArea.innerHTML = data.html;
         if (data.initLogic) {
             data.initLogic();
         }
 
         // 3. 告訴 MathJax 重新渲染新載入的公式
-        window.MathJax.typesetPromise([contentArea])
+        window.MathJax?.typesetPromise?.([contentArea])
             .catch((err) => console.log('MathJax typeset error:', err));
     }
 
@@ -3663,4 +3668,47 @@ function initializeAppLogic() {
 }
 
 // 通用的字卡邏輯函式 (保持不變)
-function
+function initFlashcards(chapterId, flashcards) {
+    const card = document.getElementById(`flashcard-${chapterId}`);
+    const front = document.getElementById(`flashcard-front-${chapterId}`);
+    const back = document.getElementById(`flashcard-back-${chapterId}`);
+    const previous = document.getElementById(`prev-card-${chapterId}`);
+    const next = document.getElementById(`next-card-${chapterId}`);
+    if (!card || !front || !back || !previous || !next || !flashcards.length) return;
+    let index = 0;
+    function showCard() {
+        window.MathJax?.typesetClear?.([card]);
+        card.classList.remove('is-flipped');
+        front.innerHTML = flashcards[index].front;
+        back.innerHTML = flashcards[index].back;
+        window.MathJax?.typesetPromise?.([card])
+            .catch(err => console.log('MathJax typeset error:', err));
+    }
+    card.addEventListener('click', () => card.classList.toggle('is-flipped'));
+    previous.addEventListener('click', () => {
+        index = (index - 1 + flashcards.length) % flashcards.length;
+        showCard();
+    });
+    next.addEventListener('click', () => {
+        index = (index + 1) % flashcards.length;
+        showCard();
+    });
+    showCard();
+}
+
+function startApp() {
+    if (window.MathJax?.startup?.promise) {
+        window.MathJax.startup.promise.then(initializeAppLogic).catch(err => {
+            console.log('MathJax startup error:', err);
+            initializeAppLogic();
+        });
+    } else {
+        initializeAppLogic();
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startApp, { once: true });
+} else {
+    startApp();
+}
